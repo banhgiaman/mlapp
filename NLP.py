@@ -37,6 +37,8 @@ vector = vectorize(df.feature)
 from sklearn.cluster import KMeans
 kmeans = KMeans(n_clusters=2, random_state=0).fit(vector)
 
+array_neg = kmeans.labels_[:5000]
+array_pos = kmeans.labels_[5000:]
 
 import pdb
 pdb.set_trace()

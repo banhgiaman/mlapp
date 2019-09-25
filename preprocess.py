@@ -209,11 +209,11 @@ class VietnameseProcess:
         self.sentence = " ".join(text)
 
     def remove_punctuation2(self):
-        text = re.split("[\W+_]", self.sentence)
-        for i in range(len(text)):
-            if (len(text[i]) > 1 and text[i][:2] != 'ng' and text[i][:2] != 'nh') or len(text[i]) > 2:
-                text[i] = " " + text[i]
-        self.sentence = "".join(text)
+        result = ''
+        for c in self.sentence:
+            result += s0[s1.index(c)] if c in s1 else c
+
+        self.sentence = result
 
     def split_attached_words(self):
         self.sentence = " ".join(re.findall('[A-Z][^A-Z]*', self.sentence))
@@ -221,7 +221,7 @@ class VietnameseProcess:
     def progress(self):
         self.remove_URLs()
         self.replace_emotion()
-        self.remove_punctuation2()
+        self.remove_punctuation()
         self.split_attached_words()
         self.lowercase()
         self.tokenize()
