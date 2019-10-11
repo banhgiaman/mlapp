@@ -29,14 +29,17 @@ def vectorize(df_test):
     train_vectors = v.fit_transform(df_test)
     return train_vectors
 
-
+# Đọc dataset và preprocess
 df = load_dataset('data_train')
+
+# vector hóa
 vector = vectorize(df.feature)
 
 # Chạy thử KMeans
 from sklearn.cluster import KMeans
 kmeans = KMeans(n_clusters=2, random_state=0).fit(vector)
 
+# so sánh kết quả ban đầu với kết quả thu được từ labels
 array_neg = kmeans.labels_[:5000]
 array_pos = kmeans.labels_[5000:]
 
