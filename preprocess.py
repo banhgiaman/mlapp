@@ -14,7 +14,7 @@ def load_dataset(path):
 
     return ds
 
-list = load_dataset('data_train')
+list = load_dataset('dataset2')
 
 sentiment_stopwords = ["ufeff", "+", "\"", "", ".", ",", "!", "%", "....", "...", ")", "(", "thì", "là", "và", "bị", "với",
                        "thế_nào", "?", "", "một_số", "mot_so", "thi", "la", "va", "bi", "voi", "trong",
@@ -75,7 +75,7 @@ emotion_icons = {
     "🚫": "negative", 'like': ' positive', '💌': ' positive ', ':(': ' negative ', '?': ' ? ',
     '💯': ' positive ', '^^': ' positive ', ':((': ' negative ', '️🆗️': ' positive ', ':v': '  positive ',
     '=))': '  positive ', ':3': ' positive ', '❌': ' negative ', ';)': ' positive ','(y)': ' positive',
-    '<3': ' positive ', ':))': ' negative ', ':)': ' negative ', ': ) )': ' negative ', ': )': ' negative ',
+    '<3': ' positive ', ':))': ' negative ', ': ) )': ' positive ',
     '^ ^': 'positive', '^_^': 'positive', ':V': 'positive', ';))': 'positive', ': D': ' positive', ': P': 'positive',
     '= . =': 'negative', '=.=': 'negative', "=='": 'negative', '^ o ^': 'positive', '^o^': ' positive',
     'haizzz': 'negative', 'haiz': 'negative', 'haizz': 'negative', 'kkk': 'positive',
@@ -222,7 +222,18 @@ class VietnameseProcess:
         self.remove_URLs()
         self.replace_emotion()
         self.remove_punctuation()
-        self.split_attached_words()
+        self.lowercase()
+        self.tokenize()
+        self.remove_numbers()
+        self.remove_repeated_characters()
+        self.replace_wrong_terms()
+        self.replace_not_terms()
+        # self.remove_stopwords()
+
+    def progress_DBSCAN(self):
+        self.remove_URLs()
+        self.replace_emotion()
+        self.remove_punctuation()
         self.lowercase()
         self.tokenize()
         self.remove_numbers()
